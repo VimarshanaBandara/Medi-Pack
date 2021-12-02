@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:medi_reminder/components/categoryCard.dart';
+import 'package:medi_reminder/components/productCard.dart';
 import 'package:medi_reminder/constant.dart';
 import 'package:medi_reminder/models/products.dart';
+import 'package:medi_reminder/reminder.dart';
 void main(){
   runApp(MyApp());
 }
@@ -126,33 +128,33 @@ class _HomePageState extends State<HomePage> {
             Text('Today\'s Details',style: TextStyle(color: kTextPrimary, fontSize: 20.0),),
             const SizedBox(height: 15.0,),
             Expanded(
-              child: ListView(
+              child: ListView.builder(
+                  itemBuilder: (context , index)=> ProductCard(product:products[index]),
                 shrinkWrap: true,
-                children: [
-                 Container(
-                   padding: EdgeInsets.symmetric(vertical:10.0 ),
-                   margin: EdgeInsets.only(bottom: 15.0),
-                   width: MediaQuery.of(context).size.width,
-                   decoration: BoxDecoration(
-                     color:  kTextSecondary,
-                     borderRadius: BorderRadius.circular(20.0),
-                     boxShadow: [
-                       BoxShadow(
-                         color: Color(0XFF073738),
-                         offset: Offset(2,3),
-                         blurRadius: 10.0,
+                itemCount: products.length,
 
-                       )
-                     ]
-                   ),
-
-                 )
-                ],
-              ),
+              )
             )
           ],
         ),
-      )
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: kSecondary,
+        splashColor: kPrimary,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Reminder(),
+            ),
+          );
+        },
+        child: Icon(
+          Icons.alarm_add,
+          color: kTextPrimary,
+          size: 30,
+        ),
+      ),
 
     );
   }

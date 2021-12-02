@@ -60,7 +60,7 @@ flutter:
   assets:
      - assets/black_mask.png
      - assets/eyepatch.png
-     - assets/black_mask.png
+     - assets/mask.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
